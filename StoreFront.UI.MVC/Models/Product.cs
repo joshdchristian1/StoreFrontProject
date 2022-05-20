@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace StoreFront.DATA.EF.Models
+namespace StoreFront.UI.MVC.Models
 {
     public partial class Product
     {
@@ -20,7 +20,7 @@ namespace StoreFront.DATA.EF.Models
         public int CategoryId { get; set; }
         public string? ProductImage { get; set; }
 
-        public virtual Category? Category { get; set; }
+        public virtual Category Category { get; set; } = null!;
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<ProductStatus> ProductStatuses { get; set; }
     }

@@ -20,7 +20,7 @@ namespace StoreFront.DATA.EF.Models
         
         [StringLength(50)]
         [Display(Name = "Category")]
-        public string CategoryName { get; set; } = null!;
+        public string? CategoryName { get; set; }
         [StringLength(100)]
         [Display(Name = "Description")]
 
@@ -155,7 +155,7 @@ namespace StoreFront.DATA.EF.Models
         [Required(ErrorMessage = " *Units on Order is required")]
         public int? ProductOnOrder { get; set; }
         public int CategoryId { get; set; }
-        [Required(ErrorMessage = " *Image is required")]
+        //[Required(ErrorMessage = " *Image is required")]
         [StringLength(170)]
         [Display(Name = "Product Image")]
         public string? ProductImage { get; set; }
