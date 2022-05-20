@@ -1,0 +1,88 @@
+﻿@model IEnumerable<StoreFront.DATA.EF.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+<div class="container m-5">
+<h1>@ViewData["Title"]</h1>
+<br />
+@if (User.IsInRole("Admin"))
+{
+    
+<p><button class="btn btn-primary">
+    <a asp-action="Create">Create New Product</a></button>
+</p>
+}
+<br />
+<table class="table">
+   <thead class="font-weight-bold">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+         @*   <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductOnOrder)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+         @*   <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductOnOrder)
+            </td>*@
+            <td>
+                @*@Html.DisplayFor(modelItem => item.ProductImage)*@
+                <img src="~/images/@item.ProductImage" class="img-fluid" alt="@item.ProductDescription" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <span>
+                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProductId" class="text-danger">Delete</a>
+                    </span>  
+                }
+                else
+                {
+                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>
+                }
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
