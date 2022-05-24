@@ -41,6 +41,7 @@
 	<link rel="stylesheet" href="~/css/reset.css">
 	<link rel="stylesheet" href="~/style.css">
     <link rel="stylesheet" href="~/css/responsive.css">
+	<link rel="stylesheet" href="~/css/custom.css">
 
 	
 	
@@ -81,7 +82,7 @@
 							<ul class="list-main">
 								<li><i class="ti-location-pin"></i> Store location</li>
 								<li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-								<li><i class="ti-user"></i><partial name="_LoginPartial" /></li>
+								<span><partial name="_LoginPartial" /></span>
 								<li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
 								
 							</ul>
@@ -291,7 +292,7 @@
 													}
 
 													
-													<li><a href="contact.html">Contact Us</a></li>
+													<li><a href="@Url.Action("Contact","Contact")">Contact Us</a></li>
 												</ul>
 										</div>
 									</div>
@@ -435,6 +436,7 @@
 	<script src="~/js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="~/js/active.js"></script>
+	
 </body>
 @await RenderSectionAsync("Scripts", false)
 </html>

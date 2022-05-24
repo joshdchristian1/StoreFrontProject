@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoreFront.DATA.EF.Models;
 using StoreFront.UI.MVC.Models;
 using System.Diagnostics;
+
 
 namespace StoreFront.UI.MVC.Controllers
 {
     public class HomeController : Controller
     {
+       
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -28,5 +31,9 @@ namespace StoreFront.UI.MVC.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+             
+
+        
     }
 }

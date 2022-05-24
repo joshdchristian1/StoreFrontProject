@@ -32,6 +32,42 @@ namespace StoreFront.UI.MVC.Controllers
             return View(await storeFrontContext.ToListAsync());
         }
 
+      
+        [AllowAnonymous]
+        public async Task<IActionResult> Sticks()
+        {
+            var storeFrontContext = _context.Products.Where(p => p.CategoryId == 1).Include(p => p.Category);
+            return View(await storeFrontContext.ToListAsync());
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Helmets()
+        {
+            var storeFrontContext = _context.Products.Where(p => p.CategoryId == 2).Include(p => p.Category);
+            return View(await storeFrontContext.ToListAsync());
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Pads()
+        {
+            var storeFrontContext = _context.Products.Where(p => p.CategoryId == 3).Include(p => p.Category);
+            return View(await storeFrontContext.ToListAsync());
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Jerseys()
+        {
+            var storeFrontContext = _context.Products.Where(p => p.CategoryId == 4).Include(p => p.Category);
+            return View(await storeFrontContext.ToListAsync());
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Accessories()
+        {
+            var storeFrontContext = _context.Products.Where(p => p.CategoryId == 5).Include(p => p.Category);
+            return View(await storeFrontContext.ToListAsync());
+        }
+
         // GET: Products/Details/5
         [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
@@ -158,7 +194,7 @@ namespace StoreFront.UI.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ProductPrice,ProductDescription,ProductQuantity,ProductOnOrder,CategoryId,ProductImage")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ProductPrice,ProductDescription,ProductQuantity,ProductOnOrder,CategoryId,ProductImage,Image")] Product product)
         {
             if (id != product.ProductId)
             {
@@ -167,6 +203,47 @@ namespace StoreFront.UI.MVC.Controllers
 
             if (ModelState.IsValid)
             {
+
+                #region Edit File Upload
+                //retain old image file name so we can delete if wa new file was uploaded
+                string oldImageName = product.ProductImage;
+                //Check if the user uploaded a file
+                if (product.Image != null)
+                {
+                    //get the file's extension
+                    string ext = Path.GetExtension(product.Image.FileName);
+
+                    //list vaild extensions
+                    string[] validExts = { ".jpeg", "jpg", ".png", ".gif" };
+
+                    //Check the files's extension against the list of valid extensions
+                    if (validExts.Contains(ext.ToLower()) && product.Image.Length < 4194303)
+                    {
+                        //generate a unique file name 
+                        product.ProductImage = Guid.NewGuid() + ext;
+                        //build our file path ot save the image
+                        string webRootPath = _webHostEnvironment.WebRootPath;
+                        string fullPath = webRootPath + "/images/";
+                        if (oldImageName != "noimage.png")
+                        {
+                            ImageUtility.Delete(fullPath, oldImageName);
+                        }
+
+                        //Save the new image to webroot
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await product.Image.CopyToAsync(memoryStream);
+                            using (var img = Image.FromStream(memoryStream))
+                            {
+                                int maxImageSize = 500;
+                                int maxThumbSize = 100;
+                                ImageUtility.ResizeImage(fullPath, product.ProductImage, img, maxImageSize, maxThumbSize);
+                            }
+                        }
+                    }
+                }
+                #endregion
+
                 try
                 {
                     _context.Update(product);

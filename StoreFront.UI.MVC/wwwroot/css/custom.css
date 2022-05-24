@@ -1,0 +1,17 @@
+.cown-box{
+    padding-top: 15%;
+}
+
+.cown-box p{
+    text-align:center;
+    font-size: 2em;
+    padding-bottom: .5em;
+}
+.products-images{
+    height: 232px;
+    width: 232px;
+}
+.nav-link-account {
+    display: inline;
+    padding: .5rem 1rem .5rem .2rem;
+}

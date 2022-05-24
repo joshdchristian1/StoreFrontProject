@@ -72,8 +72,8 @@
 					<div class="col-12">
 						<div class="bread-inner">
 							<ul class="bread-list">
-								<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-								<li class="active"><a href="blog-single.html">Shop Grid</a></li>
+								<li><a href="@Url.Action("Index","Home")">Home<i class="ti-arrow-right"></i></a></li>
+								<li class="active">Shop Grid</li>
 							</ul>
 						</div>
 					</div>
@@ -92,13 +92,12 @@
 								<div class="single-widget category">
 									<h3 class="title">Categories</h3>
 									<ul class="categor-list">
-										<li><a href="#">T-shirts</a></li>
-										<li><a href="#">jacket</a></li>
-										<li><a href="#">jeans</a></li>
-										<li><a href="#">sweatshirts</a></li>
-										<li><a href="#">trousers</a></li>
-										<li><a href="#">kitwears</a></li>
-										<li><a href="#">accessories</a></li>
+										<li><a href="@Url.Action("Sticks","Products")">Sticks</a></li>
+										<li><a href="@Url.Action("Jerseys","Products")">Jerseys</a></li>
+										<li><a href="@Url.Action("Pads","Products")">Pads</a></li>
+										<li><a href="@Url.Action("Helmets","Products")">Helmets</a></li>
+										<li><a href="@Url.Action("Accessories","Products")">Accessories</a></li>
+										
 									</ul>
 								</div>
 								<!--/ End Single Widget -->
@@ -227,7 +226,7 @@
 									</div>
 									<ul class="view-mode">
 										<li class="active"><a href="@Url.Action("TiledView","Products")"><i class="fa fa-th-large"></i></a></li>
-										<li><a href="shop-list.html"><i class="fa fa-th-list"></i></a></li>
+										<li><a href="@Url.Action("Index","Products")"><i class="fa fa-th-list"></i></a></li>
 									</ul>
 								</div>
 								<!--/ End Shop Top -->
@@ -393,3 +392,4 @@
 	
 </body>
 </html>
+

@@ -1,18 +1,12 @@
 ﻿@model IEnumerable<StoreFront.DATA.EF.Models.Product>
 
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Helmets";
 }
 <div class="container m-5">
 <h1>@ViewData["Title"]</h1>
 <br />
-@if (User.IsInRole("Admin"))
-{
-    
-<p><button class="btn btn-primary">
-    <a asp-action="Create">Create New Product</a></button>
-</p>
-}
+
 <br />
 <table class="table">
    <thead class="font-weight-bold">
@@ -32,7 +26,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductOnOrder)
             </th>*@
-            <th class="products-images">
+            <th>
                 @Html.DisplayNameFor(model => model.ProductImage)
             </th>
             <th>
@@ -67,18 +61,7 @@
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
             <td>
-                @if (User.IsInRole("Admin"))
-                {
-                    <span>
-                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ProductId" class="text-danger">Delete</a>
-                    </span>  
-                }
-                else
-                {
-                    <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>
-                }
+               
 
             </td>
         </tr>

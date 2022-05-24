@@ -7,8 +7,8 @@ $(document).ready(function(){
 	var map;
 	map = new GMaps({
 		el: '#myMap',
-		lat: 51.507351,
-		lng: -0.127758,
+		lat: 38.60619224554233,
+		lng: -90.28773618878665,
 		scrollwheel:false,
 		zoom: 15,
 		zoomControl : false,
@@ -18,11 +18,12 @@ $(document).ready(function(){
 		overviewMapControl: false,
 		clickable: false
 	});
-
-	var image = 'images/map-marker.png';
+	
+	/*C: \Users\Student\Documents\Visual Studio 2022\Projects\09_CORE2\StoreFront\StoreFront\StoreFront.UI.MVC\wwwroot\images\map - marker.png*/
+	var image = '/images/map-marker.png';
 	map.addMarker({
-		lat: 51.507351,
-		lng: -0.127758,
+		lat: 38.60619224554233,
+		lng: -90.28773618878665,
 		icon: image,
 		animation: google.maps.Animation.DROP,
 		verticalAlign: 'bottom',
